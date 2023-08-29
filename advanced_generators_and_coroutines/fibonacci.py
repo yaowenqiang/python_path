@@ -40,14 +40,14 @@ class FibonacciIterable:
         return FibonacciIterator(self.start, self.end)
 
 class FibonacciIterator:
-    def __init_-(self, start, end):
+    def __init__(self, start, end):
         self.start = start
         self.end = end
         self.increment = 0
 
     def __next__(self):
         if self.start  + self.increment > self.end:
-            raixe StopIteration()
+            raise StopIteration()
 
         fibonacci_number = fibonacci(self.start + self.increment)
         self.increment += 1
@@ -64,11 +64,11 @@ class FibonacciGenerator:
 
 
     def __repr__(self):
-        return f'FibonacciGenerator({self.star, self.endt})''
+        return f'FibonacciGenerator({self.star, self.endt})'
 
     def __iter__(self):
         for i in range(self.start, self.end):
-            yield fibnacci(i)
+            yield fibonacci(i)
 
 
 class FibonacciGeneratorOptmized:
@@ -77,22 +77,22 @@ class FibonacciGeneratorOptmized:
         self.end = end
 
     def __repr__(self):
-        return f'FibonacciGeneratorOptmized({self.star, self.endt})''
+        return f'FibonacciGeneratorOptmized({self.star, self.endt})'
 
     def __iter__(self):
         for i in range(self.start, self.end):
-            yield fibnacci_optmized(i)
+            yield fibonacci_optmized(i)
 
 
 class FibonacciGeneratorLazyOptmized:
     def __init__(self, start, end):
         self.start = start
         self.end = end
-        self.fibonacci_dict = {i: fibnacci_optmized(i) for i in range(self.start, self.end+1)}
+        self.fibonacci_dict = {i: fibonacci_optmized(i) for i in range(self.start, self.end+1)}
         self.increment = 0
 
     def __repr__(self):
-        return f'FibonacciGeneratorLazyOptmized({self.star, self.endt})''
+        return f'FibonacciGeneratorLazyOptmized({self.star, self.endt})'
 
     def __iter__(self):
         for i in range(self.start, self.end + 1):
@@ -106,7 +106,7 @@ class FibonacciIterableLazyOptmized:
         self.increment = 0
 
     def __repr__(self):
-        return f'FibonacciIterableLazyOptmized({self.star, self.endt})''
+        return f'FibonacciIterableLazyOptmized({self.star, self.endt})'
 
 
     def __iter__(self):
@@ -136,7 +136,7 @@ class Call:
         self.end = end
 
     def __call__(self, *args, **kwargs):
-        for _ in it(start=self.start, end=self.end):
+        for _ in self.it(start=self.start, end=self.end):
             pass
 
 if __name__ == '__main__':
@@ -152,75 +152,3 @@ if __name__ == '__main__':
     for iterable in [fibonacci_iterable, fibonacci_generator, fibonacci_generator_lazy, fibonacci_generator_lazy_fast, fibonacci_iterable_lazy_fast]:
         print(f'For the iterable {iterable} we got \n')
         print(f'{np.mean(timeit.repeat(Call(iterable, start_fib, end_fib), number=5, repeat=5))}\n')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
