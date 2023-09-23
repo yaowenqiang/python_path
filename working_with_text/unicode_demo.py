@@ -1,6 +1,8 @@
 import sys
 from timeit import timeit
 from icecream import ic
+from rich.traceback import install
+install(show_locals=True)
 t = "That's a spycy Jalape\u00f1o!"
 ic(t)
 a = '\xf1'
@@ -41,7 +43,7 @@ ic(timeit('text.upper()', "text='x'*1000"))
 x = 42
 format(x, 'd') # decimal
 format(x, 'f') # Floating point
-format(x, 's') # String
+format(str(x), 's') # String
 format(x, 'e') # Scientific notation
 format(x, 'x') # Hexadecimal
 format(x, 'o') # Octal
@@ -61,6 +63,24 @@ d = 42
 format(d, '08d')
 format(d, '032d')
 format(d, '=^23d')
+
+# Thousands Separator
+# [fill][<|>|^][width][,][.precision]code
+x = 123456789
+ic(format(x, ',d'))
+
+ic('{:10s} {:#^10d} {:10.2f}'.format('ACME', 50, 91.1))
+ic('<{0}>{1}<{0}>'.format('para', 'Hey there'))
+
+# format example
+
+# Positional
+# '{0} has {1} messages'.format('Dave', 37)
+# Keyword
+# '{name} has {n} messages'.format(name='Dave', n=37)
+# In order
+# '{} has {} messages'.format('Dave', 37)
+
 
 
 
