@@ -2,6 +2,7 @@ import sys
 from timeit import timeit
 from icecream import ic
 from rich.traceback import install
+from string import Template
 install(show_locals=True)
 t = "That's a spycy Jalape\u00f1o!"
 ic(t)
@@ -81,6 +82,33 @@ ic('<{0}>{1}<{0}>'.format('para', 'Hey there'))
 # In order
 # '{} has {} messages'.format('Dave', 37)
 
+# String templates
 
+msg = Template('$name has $n messages')
+ic(msg.substitute(name="Dave", n=37))
+msg = '{name} has {n} messages'
+ic(msg.format(name="Dave", n=37))
 
+record = {
+    "name": "Dave",
+    'n': 37
+}
 
+class Record:
+    def __init__(self, name, n):
+        self.name = name
+        self.n = n
+
+ic('{r[name]} has {r[n]} messages'.format(r=record))
+
+record = Record("Dave", 37)
+ic('{r.name} has {r.n} messages'.format(r=record))
+
+# {item} # replace by str(item)
+# {item!r} # replace by repr(item)
+# {item:fmt} # replace by format(item, fmt)
+
+ic('{name:10s} {price:10.2f}'.format(name="ACME", price=91.1))
+#ic('{s.name:10s} {s.price:10.f}'.fomrat(s=stock))
+ic('{name!r} {price}'.format(name='ACME', price=91.1))
+ic('{name} {price}'.format(name='ACME', price=91.1))
