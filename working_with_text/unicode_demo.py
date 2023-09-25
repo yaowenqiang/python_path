@@ -112,3 +112,19 @@ ic('{name:10s} {price:10.2f}'.format(name="ACME", price=91.1))
 #ic('{s.name:10s} {s.price:10.f}'.fomrat(s=stock))
 ic('{name!r} {price}'.format(name='ACME', price=91.1))
 ic('{name} {price}'.format(name='ACME', price=91.1))
+ic('The value is {{{0}}}'.format(42))
+s = ('ACME', 51, 91.10)
+ic('{0:{width}s} {2:{width}.2f}'.format(*s, width=12))
+ic('{0:10s} {2:10.2f}'.format(*s))
+ic('{0:10s} {1:10.2f}'.format(*s))
+ic(f'{s[0]:10s} {s[1]:10.2f}')
+
+
+# format a mapping
+
+record = {
+    'name': 'Dave',
+    'n': 10
+}
+
+ic('{name} has {n} messages'.format_map(record))
