@@ -1,4 +1,6 @@
 from icecream import ic
+import array
+import time
 a = b'ACME 50 91.10' # Byte string literal
 ic(a.split())
 ic(a.lower())
@@ -41,3 +43,25 @@ s.extend([1,2,3,4])
 ic(s)
 num = 12345
 ic(num.to_bytes(2, 'big'))
+
+s = array.array('B', [10,20, 30, 40, 50])
+ic(s)
+ic(s[0])
+ic(s[1])
+s[1] = 200
+s.append(100)
+s.extend([10,200, 30, 40, 50, 100])
+s = b'ACME 50 91.10'
+# ic('ACME' in s)
+ic(s)
+s1 = 'ACME 50 91.10'
+ic(s1)
+s3 = b'%0.2f' % 3.1415
+ic(s3)
+
+#ic(time.strptime(b'2010-02-17', '%Y-%m-%d'))
+
+s = b'Hello World'
+t = bytes(x^42 for x in s)
+ic(t)
+ic(bytes(x^42 for x in t))
