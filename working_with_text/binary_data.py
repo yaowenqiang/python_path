@@ -65,3 +65,13 @@ s = b'Hello World'
 t = bytes(x^42 for x in s)
 ic(t)
 ic(bytes(x^42 for x in t))
+a = bytearray(b'Hello World')
+b = memoryview(a)
+ic(b)
+
+b[-5:] = b'There'
+ic(a)
+b[-5:] = b'12345'
+#b[-5:] = b'123456'
+ic(a)
+#b[-5:] = '12345'
