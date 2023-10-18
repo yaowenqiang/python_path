@@ -60,3 +60,16 @@ hex((
 
 Numbering in Bitfields
 
+import stat
+stat.S_IXOTH # 1
+stat.S_IWOTH # 2
+stat.S_IROTH # 4
+
+stat.S_IXGRP # 8
+stat.S_IWGRP # 16
+stat.S_IRGRP # 32
+
+stat.S_IXUSR # 64
+stat.S_IWUSR # 128
+stat.S_IRUSR # 256
+
