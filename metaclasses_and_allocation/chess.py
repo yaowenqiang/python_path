@@ -1,36 +1,40 @@
 class ChessCoordinate:
+    _interned = {}
     # def __new__(cls, *args, **kwargs):
     def __new__(cls, file, rank):
         # print(f'cls = {cls.__name__}')
         # print(f'args = {args!r}')
         # print(f'kwargs = {kwargs!r}')
-        obj = object.__new__(cls)
-        # print(f'id(obj) = {id(obj)}')
-        return obj
-
-    def __init__(self, file, rank):
-        # print(f'id(self) = {id(self)}')
-        instance_dictionary = self.__dict__
         if len(file) != 1:
             raise ValueError(
-                f'{type(self).__name} component file {file!r}'
+                f'{type(cls.__name__)} component file {file!r}'
                 f'does not have a length of one.'
             )
 
         if file not in 'abcdefgh':
             raise ValueError(
-                f'{type(self).__name} component file {file!r}'
+                f'{type(cls.__name__)} component file {file!r}'
                 f'is out of range.'
             )
 
         if rank not in range(1, 9):
             raise ValueError(
-                f'{type(self).__name} component rank {rank | r}'
+                f'{type(cls.__name__)} component rank {rank!r}'
                 f'is out of range.'
             )
+        key = (file, rank)
+        if key not in cls._interned:
+            obj = object.__new__(cls)
+            obj._file = file
+            obj._rank = rank
+            cls._interned[key] = obj
+            # print(f'id(obj) = {id(obj)}')
+        return cls._interned[key]
 
-        self._file = file
-        self._rank = rank
+    def __init__(self, file, rank):
+        # print(f'id(self) = {id(self)}')
+        # instance_dictionary = self.__dict__
+        pass
 
     @property
     def rank(self):
