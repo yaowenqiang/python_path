@@ -1,14 +1,15 @@
 class ChessCoordinate:
-    def __new__(cls, *args, **kwargs):
-        print(f'cls = {cls.__name__}')
-        print(f'args = {args!r}')
-        print(f'kwargs = {kwargs!r}')
+    # def __new__(cls, *args, **kwargs):
+    def __new__(cls, file, rank):
+        # print(f'cls = {cls.__name__}')
+        # print(f'args = {args!r}')
+        # print(f'kwargs = {kwargs!r}')
         obj = object.__new__(cls)
-        print(f'id(obj) = {id(obj)}')
+        # print(f'id(obj) = {id(obj)}')
         return obj
 
     def __init__(self, file, rank):
-        print(f'id(self) = {id(self)}')
+        # print(f'id(self) = {id(self)}')
         instance_dictionary = self.__dict__
         if len(file) != 1:
             raise ValueError(
@@ -47,8 +48,27 @@ class ChessCoordinate:
 
 
 def main():
-    white_queue = ChessCoordinate('d', 4)
-    print(white_queue)
+    #white_queue = ChessCoordinate('d', 4)
+    #print(white_queue)
+    import tracemalloc
+    tracemalloc.start()
+    boards = [starting_board() for _ in range(10000)]
+    _, peak = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+    peak_kb = peak / 10 ** 3
+    print(f'peak memory usage: {peak_kb} KB')
+
+def starting_board():
+    return {
+        '♕♖': ChessCoordinate('a', 1),
+        '♕♘': ChessCoordinate('b', 1),
+        '♕♙': ChessCoordinate('c', 1),
+        '♕♕': ChessCoordinate('d', 1),
+        '♔♔': ChessCoordinate('e', 1),
+        '♔♙': ChessCoordinate('f', 1),
+        '♔♘': ChessCoordinate('g', 1),
+        '♔♖': ChessCoordinate('h', 1),
+    }
 
 
 if __name__ == '__main__':
