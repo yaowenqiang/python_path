@@ -31,7 +31,6 @@ class TracingMeta(type):
         ic(kwargs)
         super().__init__(name, bases, namespace)
         ic(cls)
-        return cls
 
 class Widget(metaclass=TracingMeta):
     the_answer = 42
