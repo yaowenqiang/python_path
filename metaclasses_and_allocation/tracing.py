@@ -32,6 +32,11 @@ class TracingMeta(type):
         super().__init__(name, bases, namespace)
         ic(cls)
 
+    def metamethod(cls):
+        ic('TracingMeta.metamethod(cls)')
+        ic(cls)
+        
+
 class Widget(metaclass=TracingMeta):
     the_answer = 42
     def action(self, message):
