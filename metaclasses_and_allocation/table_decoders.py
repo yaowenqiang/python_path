@@ -5,11 +5,34 @@ from pathlib import Path
 from pprint import pprint
 from io import StringIO
 
-class TableDecoder:
+class RegisterMeta(type):
+    def __new__(mcs, name, bases, namespace, **kwargs):
+        cls = super().__new__(mcs, name, bases, namespace, **kwargs)
+        cls.register(**kwargs)
+        return cls
+
+class TableDecoder(metaclass=RegisterMeta):
+    _registry = {}
+
+    @classmethod
+    def register(cls, extension=None):
+        if extension is None:
+            return
+        cls._registry[extension] = cls
+
+    @classmethod
+    def create(cls, name):
+        decoder_class = cls._registry[name]
+        return decoder_class()
+
+    @classmethod
+    def decoders(cls):
+        return list(cls._registry.keys())
+
     def decode(self, text):
         raise NotImplementedError
 
-class JsonTableDecoder(TableDecoder):
+class JsonTableDecoder(TableDecoder, extensition ='json'):
     def decode(self, text):
         objs = json.loads(text)
         table = defaultdict(list)
@@ -18,7 +41,8 @@ class JsonTableDecoder(TableDecoder):
                 table[k].append(v)
         return dict(table)
 
-class CsvTableDecoder(TableDecoder):
+# JsonTableDecoder.register()
+class CsvTableDecoder(TableDecoder, extensition='csv'):
     def decode(self, text):
         with StringIO(text) as csv_stream:
             reader = csv.DictReader(csv_stream)
@@ -28,11 +52,14 @@ class CsvTableDecoder(TableDecoder):
                     table[k].append(int(v))
             return dict(table)
 
+# CsvTableDecoder.register()
 def load_table(filepath):
     filepath = Path(filepath)
     text = filepath.read_text()
     # decoder = JsonTableDecoder()
-    decoder = CsvTableDecoder()
+    # decoder = CsvTableDecoder()
+    extension = filepath.suffix.lower().removeprefix('.')
+    decoder = TableDecoder.create(extension)
     table = decoder.decode(text)
     return table
 
@@ -44,4 +71,5 @@ def main():
 
 
 if __name__ == '__main__':
+    pprint(TableDecoder.decoders())
     main()
