@@ -37,4 +37,8 @@ Machine Scripting
 Application Scripting
 
 
+PEP-0020
 
+The Zen of python
+
+PEP8 Style guide for Python code

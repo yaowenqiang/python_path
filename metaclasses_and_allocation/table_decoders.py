@@ -5,17 +5,18 @@ from pathlib import Path
 from pprint import pprint
 from io import StringIO
 
-class RegisterMeta(type):
-    def __new__(mcs, name, bases, namespace, **kwargs):
-        cls = super().__new__(mcs, name, bases, namespace)
-        cls.register(**kwargs)
-        return cls
+# class RegisterMeta(type):
+#     def __new__(mcs, name, bases, namespace, **kwargs):
+#         cls = super().__new__(mcs, name, bases, namespace)
+#         cls.register(**kwargs)
+#         return cls
 
-class TableDecoder(metaclass=RegisterMeta):
+class TableDecoder():
     _registry = {}
 
     @classmethod
-    def register(cls, extension=None):
+    def __init_subclass__(cls, *, extension, **kwargs):
+        super().__init_subclass__(**kwargs)
         if extension is None:
             return
         cls._registry[extension] = cls
