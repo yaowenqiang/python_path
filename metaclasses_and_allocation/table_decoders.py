@@ -7,7 +7,7 @@ from io import StringIO
 
 class RegisterMeta(type):
     def __new__(mcs, name, bases, namespace, **kwargs):
-        cls = super().__new__(mcs, name, bases, namespace, **kwargs)
+        cls = super().__new__(mcs, name, bases, namespace)
         cls.register(**kwargs)
         return cls
 
@@ -32,7 +32,7 @@ class TableDecoder(metaclass=RegisterMeta):
     def decode(self, text):
         raise NotImplementedError
 
-class JsonTableDecoder(TableDecoder, extensition ='json'):
+class JsonTableDecoder(TableDecoder, extension ='json'):
     def decode(self, text):
         objs = json.loads(text)
         table = defaultdict(list)
@@ -42,7 +42,7 @@ class JsonTableDecoder(TableDecoder, extensition ='json'):
         return dict(table)
 
 # JsonTableDecoder.register()
-class CsvTableDecoder(TableDecoder, extensition='csv'):
+class CsvTableDecoder(TableDecoder, extension='csv'):
     def decode(self, text):
         with StringIO(text) as csv_stream:
             reader = csv.DictReader(csv_stream)
