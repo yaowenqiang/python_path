@@ -127,4 +127,11 @@ Look Before You leap
 Easier to ask forgiveness then permission
 Python prefers EAFP
 
+Platform-specific modules
+
+On Windows:
+msvcrt
+On Mac or Linux:
+tty,termios, sys
+
 
