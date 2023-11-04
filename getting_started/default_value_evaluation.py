@@ -23,13 +23,3 @@ launch = ['baked beans']
 add_spam(launch)
 ic(launch)
 
-## Scopes in Python
-
-+ Local Inside the current function
-+ Enclosing Inside enclosing functions
-+ Global At the top level of the module
-+ Built-in In the special builtins module
-
-LEGB Rule
-
-

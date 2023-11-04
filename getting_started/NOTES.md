@@ -57,3 +57,54 @@ Multable default values can cause confusing effects
 
 always use immutable objects for default values.
 
+## Scopes in Python
+
++ Local Inside the current function
++ Enclosing Inside enclosing functions
++ Global At the top level of the module
++ Built-in In the special builtins module
+
+LEGB Rule
+
+
+## strings
+
+Use str.join() to join strings
+
++ Concatenation with + results in temporaries
++ str.join() inserts a separator between a collection of strings
++ Call join() on the separator string
+
+
+PEP 498: Literal String interpolation
+commonly called f-strings
+
+help(str)
+
+## range
+
++ range(stop)
++ range(start,stop)
++ range(start,stop, step)
+
+### enumerate
+
+Constructs an iterable of (index, value) tuples around another iterable object
+
+### deep copy use the copy module
+
+
+## sets
+
+
+union
+difference
+symmetric_difference
+intersection
+subset
+superset
+disjoint
+
+
+
+
