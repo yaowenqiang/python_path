@@ -119,3 +119,12 @@ Multable Sequence | list
 Multable Set | set
 Multable Mppping | dict
 
+
+LBYL vs EAFP
+
+Look Before You leap
+
+Easier to ask forgiveness then permission
+Python prefers EAFP
+
+
