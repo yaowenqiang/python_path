@@ -50,5 +50,10 @@ google python style guide
 Pylauncher
 PEP 397
 
+def is a statement execute at runtime
+default arguments are evaluated when def is executed
+immutable default value don't cause problems
+Multable default values can cause confusing effects
 
+always use immutable objects for default values.
 
