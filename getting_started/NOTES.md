@@ -135,3 +135,8 @@ On Mac or Linux:
 tty,termios, sys
 
 
+### Iteraction Protocols
+
++ iterable - can be passed to iter() to produce an iterator
++ iterator - Can be passed to next() to get the next value in the sequence
+
