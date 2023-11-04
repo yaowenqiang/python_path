@@ -107,4 +107,15 @@ disjoint
 
 
 
+#3 Protocols
+
+Protocol | Implenting collections
+-------- |  ------------------- |
+Container | str, list, dict, range, tuple, set ,bytes (in or not in)
+Sized | str, list, dict, range, tuple, set ,bytes (len)
+Iterable | str, list, dict, range, tuple, set ,bytes (Yield items one by one as they are requested)
+Sequence | str, list, range, tuple, bytes( item = sequence[index] , i = sequence.index[item], num = sequence.count(item), r = reversed(sequence))
+Multable Sequence | list
+Multable Set | set
+Multable Mppping | dict
 
