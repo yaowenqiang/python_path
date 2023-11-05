@@ -87,6 +87,24 @@ class Flight:
     def num_oavailable_seats(self):
         return sum(sum(1 for s in row.values() if s is None) for row in self._seating if row is not None)
 
+
+
+    def make_boarding_cards(self, card_printer):
+        for passenger, seat in sorted(self._passenger_seats()):
+            card_printer(passenger, seat, self.number(), self.aircraft_model())
+
+
+    def _passenger_seats(self):
+        """An iterable series of passenger seating locations."""
+        row_numbers, seat_letters = self._aircraft.seating_plan()
+        for row in row_numbers:
+            for letter in seat_letters:
+                passenger = self._seating[row][letter]
+                if passenger is not None:
+                    yield (passenger, f'{row}{letter}')
+
+
+
 class Aircraft:
 
     def __init__(self, registration, model, num_rows, num_seats_per_row):
@@ -111,6 +129,21 @@ class Aircraft:
     def seating_plan(self):
         return (range(1, self._num_rows + 1), 'ABCDEFGHJK'[:self._num_seats_per_row])
 
+
+def console_card_printer(passenger, seat, flight_number, aircraft):
+    output = f'| Name: {passenger}' \
+            f'   Flight: {flight_number}' \
+            f'   Seat: {seat}' \
+            f'   Aircraft: {aircraft}' \
+            ' |'
+    banner = '+' + '-' * (len(output) -2) + '+'
+    border = '|' + ' ' * (len(output) -2) + '|'
+
+    lines = [banner, border, output,border, banner ]
+    card = '\n'.join(lines)
+    print(card)
+    print()
+
 if __name__  == '__main__':
     a = Aircraft('G-EUPT', 'Airbus A319',num_rows=22, num_seats_per_row=6)
     ic(a)
@@ -132,6 +165,7 @@ if __name__  == '__main__':
     f.relocate_passenger('12A', '18A')
     ic(f._seating)
     ic(f.num_oavailable_seats())
+    f.make_boarding_cards(console_card_printer)
 
 
 
