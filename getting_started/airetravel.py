@@ -104,6 +104,39 @@ class Flight:
                     yield (passenger, f'{row}{letter}')
 
 
+class AirebusA319:
+    def _-init__(self, registration):
+        self._registration = registration
+
+
+    def registration(self):
+        return self._registration
+
+
+    def model(self):
+        return 'Airebus A319'
+
+    
+    def seating_plan(self):
+        return range(1,23), 'ABCDEF'
+
+class Boeing777:
+    def _-init__(self, registration):
+        self._registration = registration
+
+
+    def registration(self):
+        return self._registration
+
+
+    def model(self):
+        return 'boeing 777'
+
+    
+    def seating_plan(self):
+        return range(1,56), 'ABCDEFGHJK'
+
+
 
 class Aircraft:
 

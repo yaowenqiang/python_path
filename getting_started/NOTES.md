@@ -140,3 +140,36 @@ tty,termios, sys
 + iterable - can be passed to iter() to produce an iterator
 + iterator - Can be passed to next() to get the next value in the sequence
 
+
+late binding
+
+get system default encoding
+
+import sys
+sys.getdefaultencoding()
+
+> https://docs.python.org/library/codecs.html#standard-encodings
+
+Seek cannot move to arbitrary offset.Only 0 and values from tell() are allowed, Other values result in undefined behavior.
+
+use sys.stdout.write() instead of print ,This won't add newliens like print()
+
+
+
+Expansion of the with-block
+
+mgr = (EXPR)
+exit = type(mgr).__exit___
+value = type(mgr).__enter__(mgr)
+exc = True
+try:
+    try:
+        var = value
+        block
+    except:
+        exc = False
+        if not exit(mgr, *sys.exc_info())
+        raise
+    finally:
+        if exc:
+            exit(mgr, None, None, None)
