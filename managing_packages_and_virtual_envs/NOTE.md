@@ -17,3 +17,15 @@ __init__.py is optional since Python 3.3+
 
 > import demo_reader
 > demo_reader.__file__
+
+
+relative imports syntax 
+from ..module_name import name
+
+Relative imports from demo_reader/compressed/bzipped.py
+
+relative | Absolute
+-------- | -------- |
+from . import name  |  from demo_reader.compressed import name
+from .. import name  |  from demo_reader import name
+from ..util import name  |  from demo_reader.util import name
