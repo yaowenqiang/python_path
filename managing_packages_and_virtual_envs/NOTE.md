@@ -38,6 +38,9 @@ Executable Directories
 
 __main__.py
 
+python multi-reader-program # this will add multi-reader-program to sys.path
+python multi-reader-program test.bz2
+
 Executable Zip files
 > python -m zipfile -c ../multi-reader.-program.zip *
 > cd ..
