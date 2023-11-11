@@ -167,3 +167,48 @@ Searches enclosing scopes from innermost to outermost
 use the first match found
 
 
+Decorators
+
+Modify or enhance an existing function in a non-intrusive and maintainable way
+implemented as a callable that accepts a callable and returns a callable
+
+"A function accepting a function and return a function"
+
+@my_decorator
+def my_function():
+
+Decorators allow you to modify existing functions without changing their definition
+Callers don't need to change when decorators are applied
+
+Classes as Decorators
+
+classes are callable objects
+Functions decorated with a class are replaced by an instance of the class
+These instances must themselves be callable
+
+We can decorate with a class as long as instances of the class implement __call__()
+
+Instances as decorators
+
+Python call an instance's __call__() when it's used as a decorator
+__call__()'s return value is used as the new function'
+Create groups of callables that you can dynamically control as a group
+
+Multiple decorators
+
+@decorator1
+@decorator2
+@decorator3
+@decorator4
+def some_function():
+
+Callable Metadata
+
+We can copy __name__ and __doc__ from our wrapped function to our wrapper function
+
+functools.wraps()
+Replace decorator metadata with that of the decorated callable.
+It's a decorator that you apply to your wrapper function
+It does the hard work for you!
+
+
