@@ -8,7 +8,8 @@ class ShppingContainer:
         self.owner_code = owner_code
         self.contents = contents
        #self.serial = ShppingContainer._generate_serial()
-        self.bic = ShppingContainer._make_bic_code(
+        #self.bic = ShppingContainer._make_bic_code(
+        self.bic = self._make_bic_code(
             owner_code = owner_code,
             serial=ShppingContainer._generate_serial_()
         )
@@ -43,6 +44,15 @@ class ShppingContainer:
     def create_with_items(cls, owner_code, items):
         return cls(owner_code, contents=list(items))
 
+class RefrigerateShippingContainer(ShppingContainer):
+    @staticmethod
+    def _make_bic_code(owner_code, serial):
+        return iso6346.create(
+            owner_code=owner_code,
+            serial=str(serial).zfill(6),
+            category='R'
+        )
+
 class MyClass:
     b = 'on class'
     def __init__(self):
@@ -66,3 +76,6 @@ if __name__ == '__main__':
     #c8 = ShppingContainer.create_with_items('MAE',{'food','textiles', 'minerals' })
     c8 = ShppingContainer.create_with_items('MAE',{'food','纺织品', '矿物' })
     ic(c8.contents)
+
+    r1 = RefrigerateShippingContainer('MAE', ['fish'])
+    ic(r1.bic)

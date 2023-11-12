@@ -38,7 +38,7 @@ A factory method which returns an instance of a class.The method name allows cal
 
 Originally a C++ idiom, also applicable in Python
 
-
+For polymorphic dispatch invoke static methods through self.
 
 
 
