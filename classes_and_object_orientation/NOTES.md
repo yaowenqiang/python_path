@@ -40,6 +40,8 @@ Originally a C++ idiom, also applicable in Python
 
 For polymorphic dispatch invoke static methods through self.
 
+Use **kwargs to threadarguments throught named-constructor class-methods to more specialized subclasses.
+
 
 
 

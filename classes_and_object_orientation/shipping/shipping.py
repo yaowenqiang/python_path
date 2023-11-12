@@ -4,7 +4,7 @@ from icecream import ic
 class ShppingContainer:
     next_serial = 1337
 
-    def __init__(self, owner_code, contents):
+    def __init__(self, owner_code, contents, **kwargs):
         self.owner_code = owner_code
         self.contents = contents
        #self.serial = ShppingContainer._generate_serial()
@@ -37,14 +37,24 @@ class ShppingContainer:
         return result
 
     @classmethod
-    def create_empty(cls, owner_code):
-        return cls(owner_code, contents=[])
+    def create_empty(cls, owner_code, **kwargs):
+        return cls(owner_code,contents=[], **kwargs)
 
     @classmethod
-    def create_with_items(cls, owner_code, items):
-        return cls(owner_code, contents=list(items))
+    def create_with_items(cls, owner_code, items, **kwargs):
+        return cls(owner_code, contents=list(items), **kwargs)
 
 class RefrigerateShippingContainer(ShppingContainer):
+
+    MAX_CELSIUS = 4.0
+
+    def __init__(self, owner_code, contents, *, celsius, **kwargs):
+        super().__init__(owner_code, contents, **kwargs)
+        if celsius > RefrigerateShippingContainer.MAX_CELSIUS:
+            raise ValueError('Temperature too hot!')
+        self.celsius = celsius
+
+
     @staticmethod
     def _make_bic_code(owner_code, serial):
         return iso6346.create(
@@ -77,5 +87,5 @@ if __name__ == '__main__':
     c8 = ShppingContainer.create_with_items('MAE',{'food','纺织品', '矿物' })
     ic(c8.contents)
 
-    r1 = RefrigerateShippingContainer('MAE', ['fish'])
+    r1 = RefrigerateShippingContainer('MAE', ['fish'], celsius=2.0)
     ic(r1.bic)
