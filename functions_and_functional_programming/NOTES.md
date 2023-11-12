@@ -211,4 +211,72 @@ Replace decorator metadata with that of the decorated callable.
 It's a decorator that you apply to your wrapper function
 It does the hard work for you!
 
+map()
+
+calls a function for the elements in a sequence, producing a new sequence with the return values
+It 'maps' a function over a sequence
+Map() is Azay
+map() will not call its function or access its iterables until they're needed for output
+A map object it itself iterable, iterate over it to produce output
+
+map() vs. Comprehensions
+
+Performance
+
+Neither map() or Comprehensions are necessarily faster than the other
+
+Readability
+
+Some people find one form more readable then the other
+
+Context
+
+the choise between the two will often depend on your specific context.
+
+
+filter()
+
+Removes elements from a sequence which don't meet some criteria
+Applies a predicate function to each element
+Produces its results lazily
+Only accepts a single input sequence, and the function must accept only one element
+
+filter(function, sequence)
+
+Passing None as the first argument to filter() will filter out input elements which evaluate to False
+
+map() and filter() behave differently in Python 2 and Python 3
+
+In Python3 they are lazy
+In Python2, they are eager and return lists
+
+
+functools.reduce()
+
+Repeatedly applies a two-argument function to an accumulated value and the next element from a sequence
+The initial value can be the first element in the input sequence or an optional argument
+The final accumulated - or reduced - value is returned
+
+reduce() is not unique to Python
+
+fold() in many functional language
+
+Aggregate() in .NET's LINQ
+accumulate() in C++'s Standard Template Library
+reduce() accepts an optional initial value
+Conceptually added to the start of the sequence
+Served as the first accumulator value.
+
+map-reduce
+
+
+Multi-input Comprehensions
+
+Comprehensions can have multiple input iterables and if-clauses.
+You can have multiple if-clauses in a Comprehensions as well
+Later clauses are nested inside earlier clauses
+
+
+
+
 

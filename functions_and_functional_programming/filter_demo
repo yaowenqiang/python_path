@@ -1,0 +1,11 @@
+positivies = filter(lambda x: x > 0, [1,-5, 0, 6, -2, -8, -0, 100])
+print(list(positivies))
+positivies = filter(lambda x: x > 0, (1,-5, 0, 6, -2, -8, -0, 100))
+print(list(positivies))
+positivies = filter(None, (1,-5, 0, 6, -2, -8, -0, 100, 0))
+print(list(positivies))
+positivies = filter(None, (1,-5, 0, 6, -2, -8, -0, 100, 0, +0))
+print(list(positivies))
+
+trues = filter(None, [0, 1, False, True, [], [1,2,3], '', 'hello'])
+print(list(trues))
