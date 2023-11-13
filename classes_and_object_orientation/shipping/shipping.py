@@ -50,9 +50,44 @@ class RefrigerateShippingContainer(ShppingContainer):
 
     def __init__(self, owner_code, contents, *, celsius, **kwargs):
         super().__init__(owner_code, contents, **kwargs)
-        if celsius > RefrigerateShippingContainer.MAX_CELSIUS:
-            raise ValueError('Temperature too hot!')
+        #if celsius > RefrigerateShippingContainer.MAX_CELSIUS:
+        #    raise ValueError('Temperature too hot!')
         self.celsius = celsius
+
+
+    @property
+    def celsius(self):
+        return self._celsius
+
+    @celsius.setter
+    def celsius(self, value):
+        if value > RefrigerateShippingContainer.MAX_CELSIUS:
+            raise ValueError('Temperature too hot!')
+        self._celsius = value
+
+    @staticmethod
+    def _c_to_f(celsius):
+        return celsius * 9/5 + 32
+
+    @staticmethod
+    def _f_to_c(fahrenheit):
+        return (fahrenheit - 32) * 5/9
+
+    @property
+    def fahrenheit(self):
+        return RefrigerateShippingContainer._c_to_f(self.celsius)
+
+    @fahrenheit.setter
+    def fahrenheit(self, value):
+        self.celsius = RefrigerateShippingContainer._f_to_c(value)
+
+    def get_celsius(self):
+        return self._celsius
+
+    def set_celsius(self, value):
+        if value > RefrigerateShippingContainer.MAX_CELSIUS:
+            raise ValueError('Temperature too hot!')
+        self._celsius = value
 
 
     @staticmethod
@@ -89,3 +124,11 @@ if __name__ == '__main__':
 
     r1 = RefrigerateShippingContainer('MAE', ['fish'], celsius=2.0)
     ic(r1.bic)
+    ic(r1.celsius)
+    r1.celsius = 3.0
+    r1._celsius = 5.0
+    #r1.celsius = 5.0
+    ic(r1.celsius)
+    ic(r1.fahrenheit)
+    r1.fahrenheit = -10.0
+    ic(r1.celsius)
