@@ -4,8 +4,12 @@ from icecream import ic
 class ShppingContainer:
     next_serial = 1337
 
-    def __init__(self, owner_code, contents, **kwargs):
+    HEIGHT_FT = 8.5
+    WIDTH_FT = 8.0
+
+    def __init__(self, owner_code, length_ft, contents, **kwargs):
         self.owner_code = owner_code
+        self.length_ft = length_ft
         self.contents = contents
        #self.serial = ShppingContainer._generate_serial()
         #self.bic = ShppingContainer._make_bic_code(
@@ -37,19 +41,25 @@ class ShppingContainer:
         return result
 
     @classmethod
-    def create_empty(cls, owner_code, **kwargs):
-        return cls(owner_code,contents=[], **kwargs)
+    def create_empty(cls, owner_code, length_ft,  **kwargs):
+        return cls(owner_code,length_ft, contents=[], **kwargs)
 
     @classmethod
-    def create_with_items(cls, owner_code, items, **kwargs):
-        return cls(owner_code, contents=list(items), **kwargs)
+    def create_with_items(cls, owner_code, length_ft, items, **kwargs):
+        return cls(owner_code, length_ft, contents=list(items), **kwargs)
+
+    @property
+    def volume_ft3(self):
+        return ShppingContainer.HEIGHT_FT * ShppingContainer.WIDTH_FT * self.length_ft
+
 
 class RefrigerateShippingContainer(ShppingContainer):
 
     MAX_CELSIUS = 4.0
+    FRIDGE_VOLUME_FT3 = 100
 
-    def __init__(self, owner_code, contents, *, celsius, **kwargs):
-        super().__init__(owner_code, contents, **kwargs)
+    def __init__(self, owner_code, length_ft, contents, *, celsius, **kwargs):
+        super().__init__(owner_code, length_ft, contents, **kwargs)
         #if celsius > RefrigerateShippingContainer.MAX_CELSIUS:
         #    raise ValueError('Temperature too hot!')
         self.celsius = celsius
@@ -98,6 +108,32 @@ class RefrigerateShippingContainer(ShppingContainer):
             category='R'
         )
 
+    @property
+    def volume_ft3(self):
+        return (
+            #self.length_ft
+            #* ShppingContainer.HEIGHT_FT
+            #* ShppingContainer.WIDTH_FT
+            super().volume_ft3
+            - RefrigerateShippingContainer.FRIDGE_VOLUME_FT3
+        )
+
+class HeatedRefrigeratedShippingcontainer(RefrigerateShippingContainer):
+    MIN_CELSIUS = -20
+
+
+    #@celsius.setter
+    @RefrigerateShippingContainer.celsius.setter
+    def celsius(self, value):
+        if not (
+            HeatedRefrigeratedShippingcontainer.MIN_CELSIUS 
+            <= value
+            <= RefrigerateShippingContainer.MAX_CELSIUS
+        ):
+            raise ValueError('Temperature out of range')
+
+        self._celsius = value
+
 class MyClass:
     b = 'on class'
     def __init__(self):
@@ -113,16 +149,17 @@ class MyClass:
 
 
 if __name__ == '__main__':
-    sc1 = ShppingContainer('YML', 1)
+    sc1 = ShppingContainer('YML', 20, 1)
     ic(sc1.bic)
-    c7 = ShppingContainer.create_empty('YML')
+    c7 = ShppingContainer.create_empty('YML', 20)
     ic(c7)
 
     #c8 = ShppingContainer.create_with_items('MAE',{'food','textiles', 'minerals' })
-    c8 = ShppingContainer.create_with_items('MAE',{'food','纺织品', '矿物' })
+    c8 = ShppingContainer.create_with_items('MAE',20, {'food','纺织品', '矿物' })
     ic(c8.contents)
+    ic(c8.volume_ft3)
 
-    r1 = RefrigerateShippingContainer('MAE', ['fish'], celsius=2.0)
+    r1 = RefrigerateShippingContainer('MAE', 20, ['fish'], celsius=2.0)
     ic(r1.bic)
     ic(r1.celsius)
     r1.celsius = 3.0
