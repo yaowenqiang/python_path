@@ -50,6 +50,9 @@ class ShppingContainer:
 
     @property
     def volume_ft3(self):
+        return self._calc_volume()
+
+    def _calc_volume(self):
         return ShppingContainer.HEIGHT_FT * ShppingContainer.WIDTH_FT * self.length_ft
 
 
@@ -71,6 +74,9 @@ class RefrigerateShippingContainer(ShppingContainer):
 
     @celsius.setter
     def celsius(self, value):
+        self._set_celsius(value)
+
+    def _set_celsius(self, value):
         if value > RefrigerateShippingContainer.MAX_CELSIUS:
             raise ValueError('Temperature too hot!')
         self._celsius = value
@@ -108,13 +114,13 @@ class RefrigerateShippingContainer(ShppingContainer):
             category='R'
         )
 
-    @property
-    def volume_ft3(self):
+    def _calc_volume(self):
         return (
             #self.length_ft
             #* ShppingContainer.HEIGHT_FT
             #* ShppingContainer.WIDTH_FT
-            super().volume_ft3
+            #super().volume_ft3
+            super()._calc_volume()
             - RefrigerateShippingContainer.FRIDGE_VOLUME_FT3
         )
 
@@ -125,14 +131,23 @@ class HeatedRefrigeratedShippingcontainer(RefrigerateShippingContainer):
     #@celsius.setter
     @RefrigerateShippingContainer.celsius.setter
     def celsius(self, value):
-        if not (
-            HeatedRefrigeratedShippingcontainer.MIN_CELSIUS 
-            <= value
-            <= RefrigerateShippingContainer.MAX_CELSIUS
-        ):
-            raise ValueError('Temperature out of range')
+    #    if not (
+    #        HeatedRefrigeratedShippingcontainer.MIN_CELSIUS 
+    #        <= value
+    #        <= RefrigerateShippingContainer.MAX_CELSIUS
+    #    ):
+        if value < HeatedRefrigeratedShippingcontainer.MIN_CELSIUS:
+           raise ValueError('Temperature out of range')
 
-        self._celsius = value
+        #self._celsius = value
+        #super().celsius = value
+        RefrigerateShippingContainer.celsius.fset(self, value)
+
+    def _set_celsius(self, value):
+        if value < HeatedRefrigeratedShippingcontainer.MIN_CELSIUS:
+           raise ValueError('Temperature out of range')
+        super()._set_celsius(value)
+
 
 class MyClass:
     b = 'on class'
@@ -169,3 +184,8 @@ if __name__ == '__main__':
     ic(r1.fahrenheit)
     r1.fahrenheit = -10.0
     ic(r1.celsius)
+
+    hc = HeatedRefrigeratedShippingcontainer.create_empty('YML', length_ft=40, celsius=-10.0)
+    ic(hc)
+    ic(hc.celsius)
+    #hc.celsius = -21.0

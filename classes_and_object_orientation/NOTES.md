@@ -42,6 +42,6 @@ For polymorphic dispatch invoke static methods through self.
 
 Use **kwargs to threadarguments throught named-constructor class-methods to more specialized subclasses.
 
-
+Don't override properties directly, Delegate to regular methods and override these instead
 
 
