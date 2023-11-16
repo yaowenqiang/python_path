@@ -45,3 +45,10 @@ Use **kwargs to threadarguments throught named-constructor class-methods to more
 Don't override properties directly, Delegate to regular methods and override these instead
 
 
+Conversitions for Good __repr__ Results:
+
+include necessary state, but be prepared to compromise
+format as constructor invocation source code
+
+
+
