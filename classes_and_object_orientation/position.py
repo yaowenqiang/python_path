@@ -30,9 +30,24 @@ class Position:
         return f'{typename(self)}(latitude={self.latitude}, longitude={self.longitude})'
 
     def __str__(self):
+        return format(self)
         return (
             f"{abs(self.latitude)}* {self.latitude_hemisphere}, "
             f"{abs(self.longitude)}* {self.longitude_hemisphere}"
+        )
+
+    def __format__(self, format_spec):
+        #return 'FORMATTED POSITION'
+        component_format_spec= '.2f'
+        prefix, dot, suffix = format_spec.partition('.')
+        if dot:
+            num_decimal_places = int(suffix)
+            component_format_spec = f'.{num_decimal_places}f'
+        latitude = format(abs(self.latitude), component_format_spec)
+        longitude = format(abs(self.longitude), component_format_spec)
+        return (
+            f"{latitude}* {self.latitude_hemisphere}, "
+            f"{longitude}* {self.longitude_hemisphere}"
         )
 
 
@@ -52,8 +67,21 @@ if __name__ == '__main__':
     ic(repr(position))
     ic(str(position))
     ic(format(position))
+    ic(format(position, '.3'))
+    ic(format(position, '.0'))
+    ic(f"{position})")
     earth_position = EarthPosition(90, 90)
     ic(earth_position)
     marth_position = MarsPosition(50, 50)
     ic(marth_position)
+
+    q = 7.74091e-5
+    ic(format(q, 'f'))
+    ic(format(q, '.7f'))
+    ic(format(q, '+.7f'))
+    ic(format(q, '>+20.11f'))
+    ic(f'{q}')
+    ic(f'{q:.6f}')
+    ic(f'{q:.2e}')
+
 
