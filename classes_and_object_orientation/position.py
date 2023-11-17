@@ -17,9 +17,23 @@ class Position:
     def longitude(self):
         return self._longitude
 
+    @property
+    def latitude_hemisphere(self):
+        return 'W' if self.latitude >=0 else 'S'
+
+    @property
+    def longitude_hemisphere(self):
+        return 'E' if self.longitude >=0 else 'W'
+
     def __repr__(self):
         #return f'{self.__class__.__name__}(latitude={self.latitude}, longitude={self.longitude})'
         return f'{typename(self)}(latitude={self.latitude}, longitude={self.longitude})'
+
+    def __str__(self):
+        return (
+            f"{abs(self.latitude)}* {self.latitude_hemisphere}, "
+            f"{abs(self.longitude)}* {self.longitude_hemisphere}"
+        )
 
 
 class EarthPosition(Position):
