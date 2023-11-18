@@ -138,6 +138,31 @@ Functions don't specify their types.
 you can call any method on any object, and Python won't complain until runtime.
 
 
+Data class
+'''python
+@dataclass(
+init=True,
+repr=True,
+eq=True,
+order=False,
+unsafe_hash=False,
+frozen=False,
+)
+class MyDataClass:
+    fred: int
+    jim: int
+    sheila: int
+'''
+
+Prefer immutable Dataclasses
+
+Use immutable attribute types
+
+Declare the dataclass as frozen(immutable)
+
+def __post_init__(self):
+    if self.fred < 0:
+        raise ValueError
 
 
 

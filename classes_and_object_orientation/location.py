@@ -2,6 +2,7 @@
 from icecream import ic
 import inspect
 import functools
+from dataclasses import dataclass
 
 def postcondition(predicate):
     def function_decorator(f):
@@ -103,6 +104,16 @@ class Location:
     #def __str__(self):
     #    return self.name
 
+    def __eq__(self, other):
+        ic(self.name == other.name)
+        ic(self.position == other.position)
+        if not isinstance(other, type(self)):
+            raise NotImplemented
+        return (self.name == other.name) and (self.position == other.position)
+
+    def __hash__(self):
+        return hash((self.name, self.position))
+
 
 class EarthPosition():
     def __init__(self, latitude, longitude):
@@ -160,6 +171,15 @@ class Iteinerary:
                 stop = index + 1
                 self._locations = self._locations[:stop]
 
+@dataclass(eq=True, frozen=True)
+class Location2:
+    name: str
+    position: EarthPosition
+
+    def __post_init__(self):
+        if self.name == '':
+            raise ValeuError('Location name cannot be empty!')
+
 if __name__ == '__main__':
     hong_kong = Location('Hong Kong', EarthPosition(22.29, 114.16))
     stockholm = Location('Stockholm', EarthPosition(59.33, 18.06))
@@ -184,3 +204,19 @@ if __name__ == '__main__':
     #trip2 = Iteinerary.from_locations(maracaibo)
     trip2 = Iteinerary.from_locations(maracaibo,stockholm)
     #trip2.add(stockholm)
+
+
+    l1 = Location('Maracaibo', EarthPosition(10.65, -71.65))
+    l2 = Location('Maracaibo', EarthPosition(10.65, -71.65))
+    ic(hash(l1))
+    ic(hash(l2))
+    ic(l1 == l2)
+
+    l3 = Location2('Maracaibo', EarthPosition(10.65, -71.65))
+    l4 = Location2('Maracaibo', EarthPosition(10.65, -71.65))
+    ic(l3 == l4)
+
+    cities = {l3, l4}
+    ic(cities)
+
+
