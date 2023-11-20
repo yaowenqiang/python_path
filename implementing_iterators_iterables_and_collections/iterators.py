@@ -7,6 +7,39 @@ def is_perfect_length(sequence):
     return ((n+1) & n == 0) and (n != 0)
 
 
+class InOrderIterator:
+    def __init__(self, sequence):
+        if not is_perfect_length(sequence):
+            raise ValueError(
+                f'Sequence of length {len(sequence)} does not represent '
+                'a perfect binary tree with length 2**n -1'
+            )
+
+        self._sequence = sequence
+        self._index = 0
+        self._stack = []
+
+    def __next__(self):
+        if (len(self._stack) == 0 and (self._index >= len(self._sequence))):
+            raise StopIteration
+
+        # Push Left children onto the stack while possible
+        while self._index < len(self._sequence):
+            self._stack.append(self._index)
+            self._index = _left_child(self._index)
+
+        # Opp from stack and process, before moving to the right child
+
+        index = self._stack.pop()
+        result = self._sequence[index]
+        self._index = _right_child(index)
+        return result
+
+    def __iter__(self):
+        return self
+
+
+
 class LevelOrderIterator:
 
     def __init__(self, sequence):
@@ -89,5 +122,8 @@ if __name__ == '__main__':
 
     pre_order_iterator = PreOrderIterator(expr_tree)
     ic(' '.join(pre_order_iterator))
+    
+    in_order_iterator = InOrderIterator(expr_tree)
+    ic(' '.join(in_order_iterator))
 
 
