@@ -1,5 +1,7 @@
 from icecream import ic
 
+missing = object()
+
 def is_perfect_length(sequence):
     """True if sequence has length 2**n -1, otherwise False."""
     ic(sequence)
@@ -105,6 +107,19 @@ class PreOrderIterator:
     def __iter__(self):
         return self
 
+class SkipMissingIterator:
+    def __init__(self, iterable ):
+        self._iterator = iter(iterable)
+
+    def __next__(self):
+        while true:
+            item = next(self._iterator)
+            if item is not missing:
+                return item
+
+    def __iter__(self):
+        return self
+
 if __name__ == '__main__':
     expr_tree = ['*', '+', '-', 'a', 'b','c','d']
     iterator = LevelOrderIterator(expr_tree)
@@ -125,5 +140,8 @@ if __name__ == '__main__':
     
     in_order_iterator = InOrderIterator(expr_tree)
     ic(' '.join(in_order_iterator))
+
+    expr_tree2 = ['+', 'r', '*', missing, missing, 'p', 'q']
+    iterator2 = InOrderIterator(expr_tree2)
 
 
