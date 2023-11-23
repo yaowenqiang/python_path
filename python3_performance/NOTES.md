@@ -61,3 +61,25 @@ Third-party profilers
 
 > pip install memory_profiler
 > python -m memory_rofiler  memory_profiler.py
+
+Plotting with memory_profile
+
+> pip install matplotlib
+> mprof file.py
+> mprof plot --output file.jpg
+
+Visualizing Profile Data with Snakeviz
+
+Visualize cProfile output
+Browser-based
+
+> pip install snakeviz
+> python -m cProfile -o file.prof file.py
+> snakeviz file.prof
+
+Visualizing Profiling Data file>with PyCharm Professional
+
+View call graph
++ Red for high consumers
++ Green for low consumers
+
