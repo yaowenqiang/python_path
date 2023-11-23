@@ -38,3 +38,26 @@ Profiling Modules included in Python
 > python -m profile file.py
 > python -m cCrofile file.py
 
+Limitations of Integrated Profiles
+
++ Performance
++ Can't not profile Multithreading
++ Visibility inside functions 
++ Memory visibility
+
+
+Third-party profilers
+
++ Line_profiler
++ Py-spy
++ Scalene
++ Yappi
++ Memory_profiler
+
+
+> pip install line_profiler
+> add @profiel to function
+> kerprof -lv filapath.py
+
+> pip install memory_profiler
+> python -m memory_rofiler  memory_profiler.py
