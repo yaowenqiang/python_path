@@ -83,3 +83,44 @@ View call graph
 + Red for high consumers
 + Green for low consumers
 
+
+List Performance
+
+Very fast - O(1)
+
++ Getting
++ Setting
++ Appending
+
+
+Slow- O(n)
+
++ Finding
++ Removing
+
+
+Memory allocation
+
+- Extral room for future appends
+- Old list is copied to the new list
+-
+
+Arrays
+
+Built-in arrays
+
++ compact data storage
++ Only for certain types 
++ less popular
+
+
+NumPy arrays
+
++ Numeric computations
++ iterms of different types
++ Very popular
++
+> python -m cProfile -o list_array.prof list_arrays.py
+> snakeviz list_array.prof
+
+
