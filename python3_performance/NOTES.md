@@ -123,4 +123,37 @@ NumPy arrays
 > python -m cProfile -o list_array.prof list_arrays.py
 > snakeviz list_array.prof
 
+Sets performance
 
+Very fast -O(1)
+
++ Adding
++ Deleting
++ Membership checking
+
+
+Slow - O(n)
+
+
+
+Sets vs Tuples
+
+Sets
+
++ Mutable
++ Unordered collection
++ Unique, immutable items
++ Fast membership-check
++ Sets-specific operations
+
+
+Tuple
+
++ immutable
++ Ordered collection
++ Fixed content
++ Memory efficient
+
+
+> python -m memory_profiler set_tuple.py
+> kernprof -lv set_tuple.py
