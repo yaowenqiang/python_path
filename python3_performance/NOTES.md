@@ -157,3 +157,42 @@ Tuple
 
 > python -m memory_profiler set_tuple.py
 > kernprof -lv set_tuple.py
+
+Python Queue Implementations
+
+Queue vs Deques
+
+Queue
+
++ From queue module
++ Simple queue
++ First-in-First-Out
++ Specialized for multithreading
++ Few operations
+
+Dequeues
+
++ From collections module
++ Double-ended queue
++ FIFO, Last-~n-First-Out
++ Multithreading support
++ More operations
++
+
+Performance
+
+Dequeues vs Lists
+
+Dequeues
+
++ Slow access by index - ((n))
++ Fast append and pop at the end
++ Fast append and pop at the start
+
+
+Lists
+
++ Fast access by index - O(1)
++ Fast append and pop at the end
++ Slow append and pop at the start
+
