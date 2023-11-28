@@ -6,14 +6,14 @@ def search_list(big_list, items):
         for order in big_list:
             if item  == order[0]:
                 count += 1
-    return counter
+    return count
 
 def search_dictionary(big_dictionary, items):
     count = 0
     for item in items:
         if item in big_dictionary:
                 count += 1
-    return counter
+    return count
 
 @profile
 def main():
