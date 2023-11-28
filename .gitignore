@@ -7,6 +7,7 @@ mandel.bmp
 test.bz2
 test.gz
 *.zip
+*.lprof
+*.prof
 memory_intensive.jpg
 mprofile_20231123235436.dat
-sum_loop.prof

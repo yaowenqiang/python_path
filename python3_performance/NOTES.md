@@ -196,3 +196,31 @@ Lists
 + Fast append and pop at the end
 + Slow append and pop at the start
 
++ Dictionary Performance
++
++ Very fast - O(1)
++ Getting 
++ Setting
++ Deleting
++
+Slow - O(n)
+  - Worst cases
+  -
+
+
+Performance
+
+Dictionaries
+
++ Key-value pairs
++ Restrictions on keys
++ Fast access by key - O(1)
++ Fast search
++
+
+Lists
+
++ Individual items
++ No restrictions
++ Fast access by index - O(1)
++ Slow search
