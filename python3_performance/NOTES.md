@@ -224,3 +224,41 @@ Lists
 + No restrictions
 + Fast access by index - O(1)
 + Slow search
+
+Named Tuples vs Data Class
+
+Data Class 
+
++ Multable by default
++ Supports class features
++ Fast access
++
+
+Named Tuples
+
++ Always immutable
++ Tuples, not  classes
++ Memory efficient
+
+
+> python -m timeit '{"order_id":1}'
+> python -m timeit  -s 'from collections import namedtuple; Order=namedtuple("Order", "order_id");Order(1)'
+>
+> python -m timeit  -s """
+from dataclasses import dataclass
+> @dataclass
+class Order:
+    order_id: int
+"""'Order(1)'
+
+> python -m timeit -s 'order={"order_id":1}' 'order["order_id"]'
+> python -m timeit -s 'from collections import namedtuple; Order=namedtuple("order", "order_id");order=Order(1)' 'order.or der_id'
+>
+> python -m timeit -s  """
+from dataclasses import dataclass
+@dataclass
+class Order:
+    order_id: int
+    order=Order(1)""" 'order.order_id'
+    20000000 loops, best of 5: 17.2 nsec per loop
+> """
