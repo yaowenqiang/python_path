@@ -262,3 +262,12 @@ class Order:
     order=Order(1)""" 'order.order_id'
     20000000 loops, best of 5: 17.2 nsec per loop
 > """
+
+Functions
+
+How to use Caching
+
++ Basic approach with dictionaries
++ Caching with @lru_cache
++ Use third party module(joblib)
+
