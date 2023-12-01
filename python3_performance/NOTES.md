@@ -271,3 +271,24 @@ How to use Caching
 + Caching with @lru_cache
 + Use third party module(joblib)
 
+
+
+For loops vs List Comprehensions
+
+
+For loops
+
++ More flexibility
++ Better fo adding more logic
++ Lengthy
++ Slower for simple logic
+
+List comprehensions
+
++ only for creating a new list
++ Great for simple logic
++ Concise
++  Faster for simple logic
++ Set and directory comprehensions
+
+
