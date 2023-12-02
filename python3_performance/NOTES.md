@@ -316,4 +316,15 @@ List comprehensions
 + High memory
 
 
+How to concatenate Strings
 
++ + operator
++ join
++ f-string
+
+
+Tradeoffs
+
++ Using + Slow performance, Very friendly, Scalable
++ Using f-string - High performance, friendly, Not Scalable
++ Using join - High performance, Less friendly, Scalable
