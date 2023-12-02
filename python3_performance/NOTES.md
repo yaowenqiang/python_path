@@ -291,4 +291,29 @@ List comprehensions
 +  Faster for simple logic
 + Set and directory comprehensions
 
+Limitation of Generator Expressions
+
++ iterate only once
++ No random access
+
+Generator Expression vs List Comprehensions
+
+Generator Expressions
+
++ ()
++ Less flexible
++ iterate only once
++ Access only next item
++ Very low memory
+
+
+List comprehensions
+
++ ()
++ Very flexible
++ iterate many times
++ Access any item
++ High memory
+
+
 
