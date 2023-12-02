@@ -328,3 +328,8 @@ Tradeoffs
 + Using + Slow performance, Very friendly, Scalable
 + Using f-string - High performance, friendly, Not Scalable
 + Using join - High performance, Less friendly, Scalable
+
+
+Permission
+
+Forgiveness
