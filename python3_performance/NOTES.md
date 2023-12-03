@@ -333,3 +333,22 @@ Tradeoffs
 Permission
 
 Forgiveness
+
+
+
+Self-sufficient Function vs Calling Other Functions
+
+Self-sufficient function
+
++ Duplicate code
++ Less reusable
++ More difficult to maintain
++ Better performance
+
+Calling other functions
+
++ Clean code
++ More reusable
++ Easier to maintain
++ Slower performance
+
