@@ -370,4 +370,36 @@ Processes
 
 + No GIL constraint
 
+
+
+Synchronizing Threads
+
+
+
++ Race conditions
+
++ Deadlocks
+
++ Starvation
+
++ Livelocks
+
+
+
+Troubleshooting
+
+
+
+Global Interpreter lock
+
+
+
++ Only one thread is running
+
++ The sleep() function releases the GIL
+
++ Most impact on CPU-intensive tasks
+
 + 
+
+
