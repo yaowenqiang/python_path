@@ -341,3 +341,33 @@ install Pypy3
 ```shell
 brew install pypy3
 ```
+
+Threads vs Processes
+
+
+
+Threads
+
++ LIghtweight
+
++ Shared memory
+
++ HIgh potential for bugs
+
++ GIL constaint
+
+
+
+Processes
+
+
+
++ Heavyweight
+
++ Separate memory
+
++ Low potential for bugs
+
++ No GIL constraint
+
++ 
