@@ -400,6 +400,48 @@ Global Interpreter lock
 
 + Most impact on CPU-intensive tasks
 
-+ 
+
+
+How to synchronize Threads
+
+
+
++ Locks
+
++ Semaphores
+
++ Condition variables
+
+
+
+When to Use Thread
+
+
+
+Use Threads
+
+
+
++ Tasks that wait for external events
+
++ Blocking I/O
+
++ simple Logic
+
+
+
+
+
+Avoid Threads
+
+
+
++ No waiting for external events
+
++ CPU-intensive tasks
+
++ Complex logic
+
+
 
 
