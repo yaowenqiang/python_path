@@ -445,3 +445,104 @@ Avoid Threads
 
 
 
+
+Asynchronous Code
+
+
+
+Async vs Threads
+
+
+
+Async
+
+
+
++ Low overhead
+
++ Low potential for bugs
+
++ Learning curve
+
++ Compatibility constraint
+
+
+
+Threads
+
+
+
++ High overhead
+
++ High potential for bugs
+
++ Simple syntax
+
++ High compatibility
+
+
+
+Challenges of Working with Asyncio
+
+
+
++ Learning curve
+  
+  + New syntax: async, await
+  
+  + New concepts: coroutine , event loop
+  
+  + New libraries: aiohttp, aiomysql
+
++ Debugging
+  
+  + Understand order of executing
+  
+  + Understand state of application
+
++ compatibility
+  
+  + Third-party libraries
+  
+  + Blocking code
+    
+    
+    
+    
+    
+    
+    
+
+When to use Asyncio
+
++ I/O operations
+
++ Many small tasks
+
++ Avoid synchronizing threads
+
++ Asynchronous dependencies
+
++ Data processing pipelines
+
++ Networking applications
+
+
+
+When to Avoid Using Asyncio
+
+
+
++ CPU intensive tasks
+
++ Blocking code
+
++ Blocking dependencies
+
+
+
+
+
+
+
+
