@@ -543,6 +543,36 @@ When to Avoid Using Asyncio
 
 
 
+Limitations of Multithread and Asynchronous code
+
+
+
++ Potential for bugs
+
++ Learning curve
+
++ CPU-intensive tasks
+
+
+
+More Processes
+
+
+
++ Separate memory spaces
+
++ No GIL for processes
+
++ Utilize all CPU cores
+
++ Increased emory overhead
+
++ Harder to share resources
+
++ 
+
+
+
 
 
 
