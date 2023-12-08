@@ -653,9 +653,58 @@ Implementing Multi-process Applications
 
 + Limit the number of processes
 
-+ 
 
 
+
+
+Scaling
+
+
+
++ Celery
+  
+  + task queue
+  
+  + Data processing
+  
+  + Run on many worker machines
+
++ Dask
+  
+  + Integrates with NumPy, Pandas
+  
+  + Data science
+  
+  + Scaling from labtop to cluster
+
++ Ray
+  
+  + Framework for scaling Python applications
+  
+  + Scaling from laptop to cluster
+  
+  + Designed to be general purpose
+  
+  + Machine learning workloads
+
++ Kubernetes
+  
+  + General purpose
+  
+  + Autoscaling
+  
+  + Cloud managed services
+  
+  
+  
+  
+  
+  
+  
+
+Install dask
+
+> pip install dask distributed --upgrade
 
 
 
