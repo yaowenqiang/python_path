@@ -569,6 +569,90 @@ More Processes
 
 + Harder to share resources
 
+
+
+Communication between Processes
+
+
+
++ Handle exceptions
+
++ Synchronize processes
+
++ Balance workloads
+
+
+
+How to Communicate
+
+
+
++ Pipes
+
++ Queues
+
+
+
+Multiprocessing vs Threading/Asyncio
+
+
+
+Multiprocessing
+
+
+
++ More processes
+
++ Can use more CPU cores
+
++ CPU-intensive tasks
+
++ More isolated
+
+
+
+Threading/Asyncio
+
+
+
++ One ore more threads iin a process
+
++ Can use only one CPU core
+
++ I/O-intensive tasks
+
++ Less isolated
+
+
+
+
+
+Use Cases
+
+
+
++ Data pipeline
+
++ Producer-consumer applications
+
++ Parallelizable workloads
+
+
+
+
+
+Implementing Multi-process Applications
+
+
+
++ Use logging, monitoring
+
++ Terminate cleanly
+
++ Accessto shared resources
+
++ Limit the number of processes
+
 + 
 
 
