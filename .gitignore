@@ -9,5 +9,6 @@ test.gz
 *.zip
 *.lprof
 *.prof
+*.db
 memory_intensive.jpg
 mprofile_20231123235436.dat

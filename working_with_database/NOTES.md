@@ -7,6 +7,8 @@ SQLite Usage Scenarios
 
 install visual studio code extension
 
+search sqlite
+
 
 > sqlite3 
 > .open test.db ( file will be created if not exists )
@@ -15,5 +17,8 @@ install visual studio code extension
 > .headers on
 > .mode column 
 > pragma table_info('investments')
+> insert into investments values('bitcoin', 1.0, 'usd')
 
+install rest book vistual studio extensition
 
+https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd
