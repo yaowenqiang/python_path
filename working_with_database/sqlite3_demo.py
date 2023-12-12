@@ -5,7 +5,7 @@ database = sqlite3.connect('portfolio.db')
 
 cursor = database.cursor()
 create_table_query = """
-create  table  investments (
+create  table  if not exists investments (
     coin_id TEXT,
     currency TEXT,
     sell INT,
