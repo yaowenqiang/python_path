@@ -21,4 +21,8 @@ search sqlite
 
 install rest book vistual studio extensition
 
-https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd
+> https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd
+
+
+> pip install psycopg2-binary
+> docker run --name postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -v /Users/yaojack/postgres/data:/var/lib/postgresql/data -d postgres
