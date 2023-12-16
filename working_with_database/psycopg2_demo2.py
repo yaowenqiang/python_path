@@ -1,10 +1,11 @@
 from dataclasses import dataclass
+from icecream import ic
 
 import psycopg2
 import psycopg2.extras
 import click
 import csv
-import requests
+# import requests
 
 @dataclass
 class Investment:
@@ -25,6 +26,25 @@ def get_connection():
 @click.group()
 def cli():
     pass
+
+
+
+@click.command()
+@click.option('--currency')
+def view_investment(currency):
+    stmt = f"""
+        select * from  investment 
+    """
+    if currency is not None:
+        stmt += f" where currency = '{currency.lower()}'"
+    connection = get_connection()
+    cursor = connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute(stmt)
+    data = [Investment(**dict(row)) for row in cursor.fetchall()]
+    for investment in data:
+        ic(investment)
+    cursor.close()
+    connection.close()
 
 
 @click.command()
@@ -69,6 +89,8 @@ def import_investment(filename):
 
 
 cli.add_command(new_investment)
+cli.add_command(import_investment)
+cli.add_command(view_investment)
 
 if __name__ == '__main__':
     cli()
