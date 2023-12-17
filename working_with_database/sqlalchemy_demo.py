@@ -28,13 +28,41 @@ with Session(engine) as session:
     session.add_all([ethereum, dogecoin])
     session.commit()
 
-    # stmt = select(Investment).where(Investment.coin == 'bitcoin')
+    # stmt = select(Investment)
+    # print(stmt)
 
+
+    stmt = select(Investment).where(Investment.coin == 'bitcoin')
+    # print(stmt)
+    # bitcoin = session.execute(stmt).scalar_one()
     # bitcoin = session.execute(stmt).scalar_one()
     # print(bitcoin)
+    investment = session.get(Investment, 1)
+    print(investment)
+
+    stmt = select(Investment).where(Investment.amount > 5)
+    investments = session.execute(stmt).scalars().all()
+    print(investments)
+    for i in investments:
+        print(i)
+
+    # stmt = select(Investment).where(Investment.coin == 'foocoin')
+    # session.execute(stmt).scalar_one()
 
 
+    bitcoin = session.get(Investment, 1)
+    bitcoin.amount = 1.234
+    print(session.dirty)
+    session.commit()
+    print(bitcoin)
 
+    dogecoin = session.get(Investment, 4)
+    print(session.deleted)
+    session.delete(dogecoin)
+    session.commit()
+
+
+    
 
 
 
