@@ -14,7 +14,7 @@ class Portfolio(Base):
     investments: Mapped[list['Investment']] = relationship(back_populates='portfolio')
 
     def __repr__(self):
-        return f'<Portfolio name: {self.name}>'
+        return f'<Portfolio name: {self.name}> with {len(self.investments)} investments'
     
 
 
@@ -42,7 +42,34 @@ bitcoin.portfolio = portfolio1
 
 portfolio1.investments.extend([ethereum, dogecoin])
 
+
+portfolio3 = Portfolio(name='Portfolio 3', description='Portfolio 3')
+bitcoin_2 = Investment(coin='bitcoin', currency='USD', amount=1.0)
+bitcoin_2.portfolio = portfolio3
+
 with Session(engine) as session:
     session.add(bitcoin)
+    session.add(bitcoin_2)
     session.add(portfolio2)
     session.commit()
+
+    portfolio = session.get(Portfolio, 2)
+    print(portfolio)
+
+    for investment in portfolio.investments:
+        print(investment)
+    
+    investment = session.get(Investment, 1)
+    print(investment.portfolio)
+
+    # join 
+    stmt = select(Investment).join(Portfolio)
+    print(stmt)
+
+subq = select(Investment).where(Investment.coin=='bitcoin').subquery()
+stmt = select(Portfolio).join(subq, Portfolio.id == subq.c.portfolio_id) # c means column
+print(stmt)
+portfolios = session.execute(stmt).scalars().all()
+print(portfolios)
+
+
