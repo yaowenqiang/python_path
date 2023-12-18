@@ -25,4 +25,8 @@ install rest book vistual studio extensition
 
 
 > pip install psycopg2-binary
-> docker run --name postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -v /Users/yaojack/postgres/data:/var/lib/postgresql/data -d postgres
+> d ocker run --name postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -v /Users/yaojack/postgres/data:/var/lib/postgresql/data -d postgres
+> yum install postgresql-devel
+> pip3 install pgcli
+> pgcli postgresql://postgres:password@localhost:5432/postgres
+> pip3 install litecli
