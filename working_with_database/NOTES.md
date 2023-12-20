@@ -38,5 +38,14 @@ https://docs.sqlalchemy.org/en/20/
 
 > pip install sqlalchemy
 
+# NoSQL
 
+## Mongita
+
+
+
+
+docker create --name mongodb --restart=always -p 27017:27017 -v /Users/yaojack/mongo:/data/db mongo:4.0.3
+
+> pip install pymongo
 
