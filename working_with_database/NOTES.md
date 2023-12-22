@@ -42,6 +42,9 @@ https://docs.sqlalchemy.org/en/20/
 
 ## Mongita
 
+> the $push operator is supported 
+> the $pull operator is not supported 
+> unlinke $and, which fails sliently, the $pull operator will raise an error
 
 
 

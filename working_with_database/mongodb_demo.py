@@ -31,6 +31,26 @@ delete = investments.delete_one(
 )
 
 
+large_amount_investments = investments.find({
+    '$and': [
+        {'amount': {'$gt': 100}},
+        {'coin': 'bitcoin'}
+    ]
+})
+
+watchlists.update_one({'_id': ''}, {
+    '$push': {'coins': 'bitcoin'}
+})
+
+watchlists.update_one({'_id': ''}, {
+    '$pull': {'coins': {'coin': 'bitcoin'}}
+})
+
+# investments.update_one({
+#     'coin': 'bitcoin'
+# }, {
+#     '$inc': {'amount': 1}
+# })
 
 
 
