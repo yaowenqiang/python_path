@@ -52,3 +52,10 @@ docker create --name mongodb --restart=always -p 27017:27017 -v /Users/yaojack/m
 
 > pip install pymongo
 
+SQL Schema Designers
+
++ dbdiagram.o
++ drawsql.app
++ sqldbm.com
++ quickdatabasediagrams.com
++ ondras.zarovi.cz/sql/demo
