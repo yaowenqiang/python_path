@@ -38,5 +38,24 @@ https://docs.sqlalchemy.org/en/20/
 
 > pip install sqlalchemy
 
+# NoSQL
+
+## Mongita
+
+> the $push operator is supported 
+> the $pull operator is not supported 
+> unlinke $and, which fails sliently, the $pull operator will raise an error
 
 
+
+docker create --name mongodb --restart=always -p 27017:27017 -v /Users/yaojack/mongo:/data/db mongo:4.0.3
+
+> pip install pymongo
+
+SQL Schema Designers
+
++ dbdiagram.o
++ drawsql.app
++ sqldbm.com
++ quickdatabasediagrams.com
++ ondras.zarovi.cz/sql/demo

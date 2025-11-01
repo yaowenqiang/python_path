@@ -13,8 +13,6 @@ def cli():
 
 # from icecream import ic
 # engine = create_engine('sqlite:///demo_r.db')
-engine = create_engine('postgresql://postgres:password@localhost:5432/manager')
-Base.metadata.create_all(engine)
 
 
 class Portfolio(Base):
@@ -40,6 +38,9 @@ class Investment(Base):
 
     def __repr__(self):
         return f'<Investment coin: {self.coin}, currency: {self.currency}, amout: {self.amount}'
+
+engine = create_engine('postgresql://postgres:password@localhost:5432/manager')
+Base.metadata.create_all(engine)
 
 @click.command(help='Drop all tables in the database')
 def clear_database():
